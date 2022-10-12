@@ -1,25 +1,20 @@
-import logo from './logo.svg';
+import { Button, Page } from '@shopify/polaris';
+import { connect } from 'react-redux';
 import './App.css';
+import Printdata from './components/Printdata';
+import { mapToDispatch, mapToState } from './Map/Map';
 
-function App() {
+function App(props) {
+  const btnHandler =()=>{
+    props.fetchData()
+  }
+  console.log(props)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Page title='middleware'>
+    <Button onClick={btnHandler}>Fetch Api</Button>
+    <Printdata />
+   </Page>
   );
 }
 
-export default App;
+export default connect(mapToState,mapToDispatch)(App);
